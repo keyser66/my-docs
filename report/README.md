@@ -17,6 +17,9 @@
 ### 2.3 本地构建或预览
 说明：执行 `mkdocs build --strict` 与 `mkdocs serve`，逐个检查四页的导航、表格和代码块。
 ![本地构建](images/03-local-build.png)
+(images/03-local-build (2).png)
+(images/03-local-build (3).png)
+(images/03-local-build (4).png)
 
 ### 2.4 Pages 设置
 说明：Settings → Pages → Source 选择 GitHub Actions。
@@ -29,6 +32,9 @@
 ### 2.6 网站访问与四页导航检查
 说明：浏览器地址栏显示公开网址，四页导航逐项检查正常。
 ![网站效果](images/06-website.png)
+(images/06-website (2).png)
+(images/06-website (3).png)
+(images/06-website (4).png)
 
 ### 2.7 第二次推送与自动更新验证
 ![第二次运行](images/07-second-run.png)
@@ -64,22 +70,25 @@
 
 ## 4. 原理理解
 1. docs/ 和 site/ 各保存什么？为什么不用手工修改 site/？
+
 docs 存 Markdown 源文件；
 site 是 MkDocs 根据 mkdocs.yml 生成的静态 HTML 产物，由工作流自动生成并上传，手工改会被下次构建覆盖。
 
 2. 本次工作流在什么情况下自动运行？
+
 push 到 main 且改动命中 docs/**、mkdocs.yml、requirements.txt 或 deploy.yml；
 此外可在 Actions 页面手动触发。
 
 3. build 与 deploy 两个任务有什么区别？
+
 build 负责 checkout、安装依赖、生成 site/ 并上传产物；deploy 依赖 build 成功后拿到产物发布到 Pages，拥有 pages: write 和 id-token: write 权限。
 
 4. 只修改 report/README.md 会触发部署吗？为什么？
+
 不会。paths 过滤未包含 report/**，所以推送不会启动该工作流，这是预期行为。
 
 5. 本次方案为何无需创建 gh-pages 分支？
+
 官方 Pages Actions 流程是把 site/ 作为制品上传后由 deploy-pages 发布，发布来源选 GitHub Actions，不依赖分支。
 
-## 5. 提交到教师仓库的 Issue
-- 标题：`02-github-pages 你的姓名拼音`
-- Issue 地址：【】
+
