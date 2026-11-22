@@ -11,12 +11,16 @@
 ![个人仓库](images/01-repository.png)
 
 ### 2.2 项目结构与 MkDocs 配置
-说明：`docs/` 放 Markdown 源，`nav` 的相对路径以 `docs/` 为基准，`site/` 是构建产物不需要提交。
+说明：项目目录和 mkdocs.yml，配文解释 docs、nav、site/ 的作用。
+`docs/` 放 Markdown 源，`nav` 的相对路径以 `docs/` 为基准，`site/` 是构建产物不需要提交。
 ![项目结构](images/02-structure.png)
 
 ### 2.3 本地构建或预览
 说明：执行 `mkdocs build --strict` 与 `mkdocs serve`，逐个检查四页的导航、表格和代码块。
 ![本地构建](images/03-local-build.png)
+![本地构建](images/03-local-build (2).png)
+![本地构建](images/03-local-build (3).png)
+![本地构建](images/03-local-build (4).png)
 
 ### 2.4 Pages 设置
 说明：Settings → Pages → Source 选择 GitHub Actions。
@@ -29,6 +33,9 @@
 ### 2.6 网站访问与四页导航检查
 说明：浏览器地址栏显示公开网址，四页导航逐项检查正常。
 ![网站效果](images/06-website.png)
+![网站效果](images/06-website (2).png)
+![网站效果](images/06-website (3).png)
+![网站效果](images/06-website (4).png)
 
 ### 2.7 第二次推送与自动更新验证
 ![第二次运行](images/07-second-run.png)
