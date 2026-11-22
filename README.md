@@ -2,8 +2,8 @@
 
 本项目使用 MkDocs Material 编写四页静态文档，并通过 GitHub Actions 自动构建、部署到 GitHub Pages。
 
-- 作者：YOUR-USERNAME（替换为本人 GitHub 登录名）
-- 公开网站：https://YOUR-USERNAME.github.io/my-docs/
+- 作者：keyser
+- 公开网站：https://keyser.github.io/my-docs/
 - [个人实验报告](report/README.md)
 
 ## 本地预览
