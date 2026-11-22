@@ -16,11 +16,17 @@
 ![项目结构](images/02-structure.png)
 
 ### 2.3 本地构建或预览
-说明：执行 `mkdocs build --strict` 与 `mkdocs serve`，逐个检查四页的导航、表格和代码块。
-![本地构建](images/03-local-build.png)
-![本地构建](images/03-local-build (2).png)
-![本地构建](images/03-local-build (3).png)
-![本地构建](images/03-local-build (4).png)
+说明：执行 `mkdocs build --strict` 与 `mkdocs serve`，在 `http://127.0.0.1:8000/my-docs/` 逐个打开四页，检查导航、表格和代码块是否正常。
+
+本地预览首页与关于页：
+
+![本地预览首页](images/03-local-build.png)
+![本地预览关于页](images/03-local-build-2.png)
+
+本地预览使用指南页与 API 参考页：
+
+![本地预览使用指南页](images/03-local-build-3.png)
+![本地预览API参考页](images/03-local-build-4.png)
 
 ### 2.4 Pages 设置
 说明：Settings → Pages → Source 选择 GitHub Actions。
@@ -31,11 +37,17 @@
 ![首次部署](images/05-actions-first.png)
 
 ### 2.6 网站访问与四页导航检查
-说明：浏览器地址栏显示公开网址，四页导航逐项检查正常。
-![网站效果](images/06-website.png)
-![网站效果](images/06-website (2).png)
-![网站效果](images/06-website (3).png)
-![网站效果](images/06-website (4).png)
+说明：浏览器打开公开网址 `https://keyser66.github.io/my-docs/`，从地址栏可见四页的真实路径，逐页检查导航、表格、代码块和侧边目录均正常。
+
+公开网站首页与关于页：
+
+![网站首页](images/06-website.png)
+![网站关于页](images/06-website-2.png)
+
+公开网站使用指南页与 API 参考页：
+
+![网站使用指南页](images/06-website-3.png)
+![网站API参考页](images/06-website-4.png)
 
 ### 2.7 第二次推送与自动更新验证
 ![第二次运行](images/07-second-run.png)
