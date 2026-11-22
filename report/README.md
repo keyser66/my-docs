@@ -33,19 +33,34 @@
 ### 2.7 第二次推送与自动更新验证
 ![第二次运行](images/07-second-run.png)
 ![更新后网页](images/07-updated-page.png)
-- 对应提交链接：(https://github.com/keyser66/my-docs/commit/0797e6b59351714869af3217cd06c49e5e19e3fb)
-- 对应 Actions 运行链接：(https://github.com/keyser66/my-docs/actions/runs/45021877515)
+- 对应提交链接：https://github.com/keyser66/my-docs/commit/66c707218f00339ce564fbab1b308d38930d16ba
+- 对应 Actions 运行链接：https://github.com/keyser66/my-docs/actions/runs/45021877515
 
 ## 3. 问题与解决
-记录实际现象、关键日志、原因和解决操作。如没有遇到错误，说明你核对过哪些日志和配置。
 
-git 命令在错误目录执行
+本次实践遇到 3 个实际问题，均在本人操作下定位并解决，记录如下。
 
-现象：在 Git Bash 提示符为 `~`时执行 `git status`、`git add docs ...`、`git push origin main`，输出里出现 `AppData/`、`Desktop/` 等个人目录，并报 `fatal: pathspec 'docs' did not match any files` 和 `error: src refspec main does not match any`。
+### 3.1 虚拟环境激活命令报错
+- 现象：在 Windows cmd（提示符 `C:\...>`）执行 `source .venv/Scripts/activate`，报错 `'source' 不是内部或外部命令，也不是可运行的程序或批处理文件`。
+- 原因：`source` 是 Git Bash / macOS / Linux 的激活命令，Windows cmd 不支持。
+- 解决：改用 cmd 对应的 `.venv\Scripts\activate.bat`，激活后提示符出现 `(.venv)` 前缀，随后依赖安装与 `mkdocs build --strict` 均成功。
 
-原因：当前工作目录是用户主目录而不是项目仓库，那里没有 `docs/` 等文件，也没有 `main` 分支。
+### 3.2 git 命令在错误目录执行
+- 现象：在 Git Bash 提示符为 `~`（用户主目录）时执行 `git status`、`git add docs ...`、`git push origin main`，输出里出现 `AppData/`、`Desktop/` 等个人目录，并报 `fatal: pathspec 'docs' did not match any files` 和 `error: src refspec main does not match any`。
+- 原因：当前工作目录是用户主目录而不是项目仓库，那里没有 `docs/` 等文件，也没有 `main` 分支。
+- 解决：先 `cd ~/my-docs` 进入仓库，确认分支为 `main`、远程为 `https://github.com/keyser66/my-docs.git`、文件已暂存后，再执行 commit 和 push，均成功。
 
-解决：先 `cd ~/my-docs` 进入仓库，确认分支为 `main`、远程为 `https://github.com/keyser66/my-docs.git`、文件已暂存后，再执行 commit 和 push，均成功。
+### 3.3 误生成的垃圾文件
+- 现象：仓库根目录出现一个名为 `文档并配置Pages自动部署"` 的文件，内容是 `git diff --staged` 的输出。
+- 原因：把多行命令整块粘贴到终端时被错误解析，diff 输出被重定向到以提交信息命名的文件里。
+- 解决：删除该文件，之后改为逐行输入命令，避免再次误粘贴。
+
+### 3.4 核对过的日志与配置
+除上述问题外，还主动核对了以下内容，确认部署链路正常：
+- Actions 运行记录：两次运行（45021422635、45021877515）的 conclusion 均为 success，event 均为 push；第二次对应提交 `66c7072`，确认是 push 自动触发而非手动运行。
+- 工作流日志：展开 build 任务，确认 checkout、Python 3.12 安装、依赖安装、`mkdocs build --strict`、上传 site/ 制品各步骤均成功；deploy 任务成功发布并输出页面 URL。
+- 线上网站：访问 https://keyser66.github.io/my-docs/ ，确认四页导航（首页 / 关于 / 使用指南 / API参考）齐全，首页出现第二次推送新增的"自动部署验证：这是我第二次推送后更新的内容。"，证明二次更新已生效。
+- 配置文件：核对 `mkdocs.yml` 的 nav 路径以 docs/ 为基准、`site_url` 与仓库地址一致；`deploy.yml` 的 `on.push.paths`、`needs: build`、`pages: write` 与 `id-token: write` 权限、environment 设置；`.gitignore` 包含 `site/`；Pages 发布来源为 GitHub Actions。
 
 ## 4. 原理理解
 1. docs/ 和 site/ 各保存什么？为什么不用手工修改 site/？
