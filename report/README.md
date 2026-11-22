@@ -17,9 +17,6 @@
 ### 2.3 本地构建或预览
 说明：执行 `mkdocs build --strict` 与 `mkdocs serve`，逐个检查四页的导航、表格和代码块。
 ![本地构建](images/03-local-build.png)
-(images/03-local-build (2).png)
-(images/03-local-build (3).png)
-(images/03-local-build (4).png)
 
 ### 2.4 Pages 设置
 说明：Settings → Pages → Source 选择 GitHub Actions。
@@ -32,9 +29,6 @@
 ### 2.6 网站访问与四页导航检查
 说明：浏览器地址栏显示公开网址，四页导航逐项检查正常。
 ![网站效果](images/06-website.png)
-(images/06-website (2).png)
-(images/06-website (3).png)
-(images/06-website (4).png)
 
 ### 2.7 第二次推送与自动更新验证
 ![第二次运行](images/07-second-run.png)
